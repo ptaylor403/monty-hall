@@ -24,7 +24,7 @@ def no_change_game_loop():
             lose += 1
         if open_other == winner:
             win += 1
-    print("Not changing choice. \nCar {}%, Goat {}%.".format((win / 10), (lose / 10)))
+    print("\nNot changing choice. \nCar {}%, Goat {}%.".format((win / 10), (lose / 10)))
 
 def change_game_loop():
     times_won = 0
@@ -42,7 +42,7 @@ def change_game_loop():
         else:
             times_won += 1
 
-    print("Changing your choice. \nCar {}%, Goat {}%.".format((times_won / 10), (got_goat / 10)))
+    print("\nChanging your choice. \nCar {}%, Goat {}%.".format((times_won / 10), (got_goat / 10)))
 
 def main():
     no_change_game_loop()
