@@ -6,16 +6,6 @@ def choose_winner():
 def choose_door():
     return random.randint(1, 3)
 
-# def keep_playing():
-#     game_continue = input("Would you like to play again? Y/n: ").lower()
-#     if game_continue == 'y':
-#         return True
-#     elif game_continue != 'n' and game_continue != 'y':
-#         print("That's not one of the choices, try again")
-#         return keep_playing()
-#     else:
-#         return False
-
 def change_choice(choice):
     new_choice = random.randint(1,3)
     if new_choice == choice:
@@ -39,15 +29,6 @@ def game_loop():
         else:
             times_won += 1
 
-        # print("first", first_choice)
-        # print("second", second_choice)
-        # if user_input > 3:
-        #     print("There are not that many doors. What's wrong with you?")
-        #     game_loop(game_status)
-
-        #     print("Congratulations! You won the car!")
-        # if user_input != winner:
-        #     print("I'm sorry, all you got was this stupid goat.")
     print("Ran game 2000 times. \nCar {}, Goat {}.".format(times_won, got_goat))
 def main():
     game_loop()
