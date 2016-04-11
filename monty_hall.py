@@ -1,6 +1,5 @@
 import random
 
-
 def choose_winner():
     return random.randint(1, 3)
 
@@ -17,20 +16,39 @@ def choose_door():
 #     else:
 #         return False
 
-def game_loop(game_status):
-    for _ in range(100):
-        winner = choose_winner()
-        user_input = choose_door()
-        print(user_input)
-        if user_input > 3:
-            print("There are not that many doors. What's wrong with you?")
-            game_loop(game_status)
-        if user_input == winner:
-            print("Congratulations! You won the car!")
-        if user_input != winner:
-            print("I'm sorry, all you got was this stupid goat.")
+def change_choice(choice):
+    new_choice = random.randint(1,3)
+    if new_choice == choice:
+        return change_choice(choice)
+    else:
+        return new_choice
 
+def game_loop():
+    times_won = 0
+    got_goat = 0
+    for _ in range(2000):
+        winner = choose_winner()
+        first_choice = choose_door()
+        open_other = change_choice(first_choice)
+        if open_other != winner:
+            second_choice = change_choice(open_other)
+            if second_choice == winner:
+                times_won += 1
+            if second_choice != winner:
+                got_goat += 1
+        else:
+            times_won += 1
+
+        # print("first", first_choice)
+        # print("second", second_choice)
+        # if user_input > 3:
+        #     print("There are not that many doors. What's wrong with you?")
+        #     game_loop(game_status)
+
+        #     print("Congratulations! You won the car!")
+        # if user_input != winner:
+        #     print("I'm sorry, all you got was this stupid goat.")
+    print("Ran game 2000 times. \nCar {}, Goat {}.".format(times_won, got_goat))
 def main():
-    game_status = True
-    game_loop(game_status)
+    game_loop()
 main()
