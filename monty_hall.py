@@ -13,10 +13,23 @@ def change_choice(choice):
     else:
         return new_choice
 
-def game_loop():
+def no_change_game_loop():
+    win = 0
+    lose = 0
+    for _ in range(1000):
+        winner = choose_winner()
+        first_choice = choose_door()
+        open_other = change_choice(first_choice)
+        if open_other != winner:
+            lose += 1
+        if open_other == winner:
+            win += 1
+    print("Not changing choice. \nCar {}%, Goat {}%.".format((win / 10), (lose / 10)))
+
+def change_game_loop():
     times_won = 0
     got_goat = 0
-    for _ in range(2000):
+    for _ in range(1000):
         winner = choose_winner()
         first_choice = choose_door()
         open_other = change_choice(first_choice)
@@ -29,7 +42,10 @@ def game_loop():
         else:
             times_won += 1
 
-    print("Ran game 2000 times. \nCar {}, Goat {}.".format(times_won, got_goat))
+    print("Changing your choice. \nCar {}%, Goat {}%.".format((times_won / 10), (got_goat / 10)))
+
 def main():
-    game_loop()
+    no_change_game_loop()
+    change_game_loop()
+
 main()
